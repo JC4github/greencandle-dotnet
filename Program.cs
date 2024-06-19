@@ -1,3 +1,6 @@
+using greencandle_dotnet.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +15,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    builder.Services.AddDbContext<ReportContext>(options => 
+        options.UseInMemoryDatabase("Report"));
+
+} else {
+    builder.Services.AddDbContext<ReportContext>(options => 
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found")));
+
 }
 
 app.UseHttpsRedirection();
