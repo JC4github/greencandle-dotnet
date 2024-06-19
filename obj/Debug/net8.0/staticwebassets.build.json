@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "two/IkX4adJu0yERSeRQtcEt8xZa/N8/oxqkzpEMixQ=",
+  "Source": "greencandle-dotnet",
+  "BasePath": "_content/greencandle-dotnet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
