@@ -1,5 +1,7 @@
 using greencandle_dotnet.Data;
 using Microsoft.EntityFrameworkCore;
+using greencandle_dotnet.Interfaces;
+using greencandle_dotnet.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddControllers();
+
+if (builder.Environment.IsDevelopment())
+{
+    // builder.Services.AddDbContext<ReportContext>(options => 
+    //     options.UseInMemoryDatabase("Report"));
+
+    builder.Services.AddDbContext<ReportContext>(options => 
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found")));
+} 
+else 
+{
+    builder.Services.AddDbContext<ReportContext>(options => 
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found")));
+}
 
 var app = builder.Build();
 
@@ -15,40 +33,15 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    builder.Services.AddDbContext<ReportContext>(options => 
-        options.UseInMemoryDatabase("Report"));
-
-} else {
-    builder.Services.AddDbContext<ReportContext>(options => 
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found")));
-
 }
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseRouting();
 
-app.MapGet("/weatherforecast", () =>
+app.UseEndpoints(endpoints =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    endpoints.MapControllers();
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

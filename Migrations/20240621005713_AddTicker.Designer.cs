@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using greencandle_dotnet.Data;
 
@@ -10,9 +11,11 @@ using greencandle_dotnet.Data;
 namespace greencandle_dotnet.Migrations
 {
     [DbContext(typeof(ReportContext))]
-    partial class ReportContextModelSnapshot : ModelSnapshot
+    [Migration("20240621005713_AddTicker")]
+    partial class AddTicker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
