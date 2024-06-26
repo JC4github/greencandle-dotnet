@@ -13,15 +13,16 @@ namespace greencandle_dotnet.Repository
             _context = context;
         }
 
-        // implement the interface methods
+        // Method to get all reports for a user
         public IEnumerable<Report> GetAllReportsForUser(string email)
         {
             return _context.Reports.Where(r => r.Email == email).OrderBy(p => p.Id);
         }
 
-        public void DeleteReportForUser(string email, string ticker)
+        // Method to delete a report for a user
+        public void DeleteReportForUser(string id)
         {
-            var report = _context.Reports.FirstOrDefault(r => r.Email == email && r.Ticker == ticker);
+            var report = _context.Reports.FirstOrDefault(r => r.Id.ToString() == id);
             if (report != null)
             {
                 _context.Reports.Remove(report);
@@ -29,6 +30,7 @@ namespace greencandle_dotnet.Repository
             }
         }
 
+        // Method to add a report for a user
         public void AddReportForUser(string email, string reportContent, string ticker)
         {
             var report = new Report
@@ -39,6 +41,19 @@ namespace greencandle_dotnet.Repository
             };
             _context.Reports.Add(report);
             _context.SaveChanges();
+        }
+
+        // Method to update a report for a user
+        public void UpdateReportForUser(string id, string email, string reportContent, string ticker)
+        {
+            var report = _context.Reports.FirstOrDefault(r => r.Id.ToString() == id);
+            if (report != null)
+            {
+                report.Email = email;
+                report.Content = reportContent;
+                report.Ticker = ticker;
+                _context.SaveChanges();
+            }
         }
     }
 }
