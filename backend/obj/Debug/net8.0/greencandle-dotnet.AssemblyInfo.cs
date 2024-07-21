@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("greencandle-dotnet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be1380985eb114526cdf312a99ba71edfb7d8c11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43eddd702eea14c9885194e9c231db98563c8023")]
 [assembly: System.Reflection.AssemblyProductAttribute("greencandle-dotnet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("greencandle-dotnet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
