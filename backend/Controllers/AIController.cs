@@ -6,6 +6,7 @@ using OpenAI;
 using OpenAI.ObjectModels.RequestModels;
 using OpenAI.ObjectModels;
 using System.Text.Json;
+using greencandle_dotnet.ReportBeautifier;
 
 namespace greencandle_dotnet.Controllers
 {
@@ -126,7 +127,17 @@ namespace greencandle_dotnet.Controllers
 
                             if (completionResult.Successful)
                             {
-                                return Ok(completionResult.Choices.First().Message.Content);
+                                var gptReport = completionResult.Choices.First().Message.Content;
+                                // Beautify the report
+                                
+                                if (string.IsNullOrEmpty(gptReport))
+                                {
+                                    return Ok("Error generating report.");
+                                }
+
+                                var beautifiedReport = HtmlProcessor.Beautify(gptReport);
+                                var response = new { content = beautifiedReport };
+                                return Ok(response);
                             }
                             return Ok("Error generating report.");
                         }

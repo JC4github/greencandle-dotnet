@@ -7,6 +7,7 @@ interface ReportDetailProps {
 
 const ReportDetail = ({ report }: ReportDetailProps) => {
   const createMarkup = (markdownString: string) => {
+    console.log(markdownString);
     return { __html: markdownString };
   };
 
@@ -36,7 +37,7 @@ const ReportDetail = ({ report }: ReportDetailProps) => {
       {report ? (
         <div
           style={contentStyles}
-          dangerouslySetInnerHTML={createMarkup(report.mdString)}
+          dangerouslySetInnerHTML={createMarkup(report.content)}
         />
       ) : (
         <div style={contentStyles}>No Report Displayed</div>

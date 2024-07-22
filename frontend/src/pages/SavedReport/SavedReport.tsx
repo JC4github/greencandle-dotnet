@@ -97,7 +97,7 @@ const SavedReport = () => {
 
   const handleDownload = () => {
     html2pdf()
-      .from(selectedReport?.mdString)
+      .from(selectedReport?.content)
       .set({
         margin: [20, 20, 20, 20],
         filename: `${selectedReport?.ticker.toLowerCase()}-report.pdf`,

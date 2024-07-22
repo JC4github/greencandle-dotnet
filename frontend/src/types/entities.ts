@@ -1,7 +1,7 @@
 export interface Report {
   id: number;
   email: string;
-  mdString: string;
+  content: string;
   ticker: string;
 }
 
