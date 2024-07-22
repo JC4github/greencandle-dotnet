@@ -1,0 +1,212 @@
+.main-container {
+    display: flex;
+    height: 100vh;
+    width: 100%; /* Ensures full width */
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Background color for the entire view */
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+    overflow: hidden;
+  }
+  
+  .signup-mode .container {
+    /* Move the login container to the right */
+    transform: translateX(40vw);
+  }
+  
+  .signup-mode .side-panel {
+    /* Move the side panel to the left */
+    transform: translateX(-60vw);
+  }
+  
+  .container {
+    flex: 3; /* Takes up 2/3 of the space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Ensures the background color fills only the login area */
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .side-panel {
+    flex: 2;
+    background-color: #048e62;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white; /* All text inside will be white by default */
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .side-title {
+    font-size: 2.5rem; /* Increase the font size */
+    font-weight: bold; /* Make it bolder */
+    letter-spacing: 1px; /* Optional: Increase letter spacing for a blockier look */
+    margin-bottom: 15px; /* Adjust spacing as needed */
+}
+  .side-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .side-button {
+    padding: 15px 30px; /* Increase padding to make the button larger */
+    background-color: white;
+    color: black; /* Text color for the button */
+    font-size: 1.25rem; /* Increase font size for better visibility */
+    font-weight: 600; /* Bolder text inside the button */
+    border-radius: 35px; /* Slightly more rounded */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+.side-button:hover {
+    background-color: #e5f5e0; /* Light green on hover */
+}
+  
+  .google-btn {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px; /* Fully rounded */
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between logo and text */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .google-btn:hover {
+    background-color: #f8f8f8; /* Slightly grey background on hover */
+  }
+  
+  .google-logo {
+    width: 20px; /* Adjust size as needed */
+    height: auto;
+  }
+  
+  .google-btn-text {
+    border-left: 1px solid black; /* Divider */
+    padding-left: 10px;
+    font-weight: 300;
+  }
+  
+  /* Ensuring adequate spacing and alignment */
+  .social-login {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    gap: 20px;
+    margin: 10px 0;
+  }
+  
+  
+  .title {
+    font-size: 2.5rem; /* Slightly larger for prominence */
+    font-weight: 600; /* Medium weight for better readability */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern and clean font */
+    margin-bottom: 20px;
+    color: #333; /* Dark grey for better contrast */
+  }
+  
+  .button {
+    font-size: 1.75rem; /* Increase font size for more prominence */
+    padding: 12px 25px; /* Increase padding to make the button larger */
+    background-color: #048e62; /* A vibrant green shade */
+    color: white; /* Text color for visibility */
+    border: none;
+    border-radius: 30px; /* Fully rounded edges */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover and focus effects */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Add shadow for depth */
+}
+
+.button:hover, .button:focus {
+    background-color: #00593D; /* Darker shade on hover/focus for interactive feedback */
+    box-shadow: 0 12px 20px rgba(0,0,0,0.3); /* Enhanced shadow on hover for a lifted effect */
+    outline: none; /* Removes the default focus outline */
+}
+  
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 67.5%; /* Set this to ensure consistent width */
+    margin: 10px 0; /* Adds margin for spacing */
+  }
+  
+  .password-group {
+    position: relative;
+    width: 100%; /* Same width as input-container */
+  }
+  
+  .inputField {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 25px;
+    border: 2px solid #006400; /* Dark green border */
+    background-color: #e5f5e0; /* Light green background by default */
+    height: 48px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    outline: none;
+}
+
+.inputField:focus {
+    background-color: #cdeccd !important; /* Lighter green background when focused */
+    border-color: #004d00 !important; /* Ensure the border color does not change to blue */
+}
+
+
+
+  
+  .inputField[type="password"] {
+    padding-right: 45px; /* Increase right padding for the password field */
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px; /* Maintain the right alignment */
+    top: -10px; /* Adjust this value to move the icon up */
+    bottom: 0;
+    display: flex;
+    align-items: center; /* Center vertically */
+    background: none;
+    border: none;
+    color: #006400; /* Icon color, adjust as needed */
+    cursor: pointer;
+    font-size: 1.5rem; /* Size of the icon */
+}
+
+  
+  
+  
+  
+  .error {
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  .new-user {
+    margin-top: 20px;
+  }
+  
+  /* Overrides for browser autofill */
+  html .container .inputField:-webkit-autofill,
+  html .container .inputField:-webkit-autofill:hover, 
+  html .container .inputField:-webkit-autofill:focus, 
+  html .container .inputField:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #e5f5e0 inset !important;
+    -webkit-text-fill-color: #333 !important;
+  }
+  

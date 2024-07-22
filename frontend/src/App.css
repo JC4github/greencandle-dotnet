@@ -1,0 +1,5 @@
+.detail {
+    flex: 1;
+    display: flex;
+    margin: 20px 80px;
+}

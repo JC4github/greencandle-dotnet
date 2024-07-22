@@ -1,2 +1,8 @@
 .env
 appsettings.json
+bin/
+obj/
+Migrations/
+.DS_Store
+.vscode/*
+.vs/*

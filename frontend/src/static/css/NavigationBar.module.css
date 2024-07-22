@@ -1,0 +1,14 @@
+.navBarContainer {
+    height: 63px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    background: linear-gradient(to right, #00593D , #2AC58C);
+    align-items: center;
+    padding: 10px;
+
+    & p {
+        font-size: x-large;
+        font-weight: 500;
+    }
+}

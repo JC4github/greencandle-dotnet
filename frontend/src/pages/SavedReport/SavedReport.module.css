@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.leftPanel {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.rightPanel {
+  flex: 1;
+}
+
+.reportList {
+  list-style: none;
+  padding: 0;
+}
+
+.reportInstance {
+  border-radius: 5px;
+  background: linear-gradient(to right, #fff 50%, #4edb4c);
+}
+
+.reportContainer {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.logoContainer {
+  flex: 0 0 70px;
+  margin-right: 10px;
+}
+
+.companyLogo {
+  width: 50px;
+  height: 50px;
+}
+
+.infoContainer {
+  flex: 1;
+}
+
+.companyName {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.tickerPrice {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.buttonsContainer {
+  margin-top: 10px;
+}
+
+.deleteButton {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.savedReportsTitle {
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.userEmail {
+  font-style: italic;
+  font-size: 18px;
+}
+
+.reportsTitle {
+  color: green;
+  font-size: 20px;
+}
