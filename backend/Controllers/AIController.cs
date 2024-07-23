@@ -56,18 +56,41 @@ namespace greencandle_dotnet.Controllers
                         // Check if the second node has a "data" property
                         if (secondNode.TryGetProperty("data", out JsonElement dataElement) && dataElement.ValueKind == JsonValueKind.Array)
                         {
-                            // Extract the first 5 elements from the data array
+                            // Extract the first 15 elements from the data array
                             var dataArray = dataElement.EnumerateArray().Skip(1).Take(15).ToList();
 
-                            // Assign variables to the extracted elements
-                            var marketCap = dataArray[0].GetString();
-                            var revenue = dataArray[1].GetString();
-                            var netIncome = dataArray[3].GetString();
-                            var sharesOut = dataArray[4].GetString();
-                            var eps = dataArray[5].GetString();
-                            var peRatio = dataArray[6].GetString();
-                            var dividend = dataArray[8].GetString();
-                            var description = dataArray[14].GetString();
+                            // Define an array of default values for each field
+                            var defaultValues = new string[] { "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A" };
+
+                            // Define an array of indices for the fields
+                            int[] indices = new int[] { 0, 1, 3, 4, 5, 6, 8, 14 };
+
+                            // Define an array to hold the extracted values
+                            var extractedValues = new string[indices.Length];
+
+                            // Iterate over the indices array and extract values
+                            for (int i = 0; i < indices.Length; i++)
+                            {
+                                int index = indices[i];
+                                try
+                                {
+                                    extractedValues[i] = dataArray[index].GetString();
+                                }
+                                catch (Exception)
+                                {
+                                    extractedValues[i] = defaultValues[i];
+                                }
+                            }
+
+                            // Assign variables from the extracted values
+                            var marketCap = extractedValues[0];
+                            var revenue = extractedValues[1];
+                            var netIncome = extractedValues[2];
+                            var sharesOut = extractedValues[3];
+                            var eps = extractedValues[4];
+                            var peRatio = extractedValues[5];
+                            var dividend = extractedValues[6];
+                            var description = extractedValues[7];
 
                             // Get the current date
                             string date = DateTime.Now.ToString("MMMM dd, yyyy");
@@ -128,6 +151,9 @@ namespace greencandle_dotnet.Controllers
                             if (completionResult.Successful)
                             {
                                 var gptReport = completionResult.Choices.First().Message.Content;
+
+                                //log the report
+                                Console.WriteLine(gptReport);
                                 // Beautify the report
                                 
                                 if (string.IsNullOrEmpty(gptReport))

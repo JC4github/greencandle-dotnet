@@ -29,6 +29,21 @@ namespace greencandle_dotnet.Controllers
             return Ok(reports);
         }
 
+        // Define a GET method for getting a report by email and ticker match
+        [HttpGet("search")]
+        [ProducesResponseType(200, Type = typeof(Report))]
+        [ProducesResponseType(404)]
+        public IActionResult GetReportByEmailAndTicker([FromQuery] string email, [FromQuery] string ticker)
+        {
+            var report = _reportRepository.GetReportByEmailAndTicker(email, ticker);
+
+            if (report == null)
+            {
+                return NotFound();
+            }
+            return Ok(report);
+        }
+
         // Define a POST method for adding a report
         [HttpPost]
         [ProducesResponseType(201)]

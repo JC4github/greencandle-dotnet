@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import { GetReport } from "../../static/util/api";
 import { DownloadIcon, AttachmentIcon } from "@chakra-ui/icons";
 import InfoDialog from "./components/InfoDialog";
+import { Report } from "../../types/entities";
 
 interface stockReportData {
   tickerSymbol: string;
@@ -27,7 +28,7 @@ export default function StockReport() {
   const navigate = useNavigate();
   const { tickerSymbol } = useLoaderData() as stockReportData;
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [searchReturnedReport, setSearchReturnedReport] = useState<Report | null>(null);
   const [userEmail, setUserEmail] = useState<string>("");
   const [reportHTML, setReportHTML] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -41,12 +42,12 @@ export default function StockReport() {
         navigate("/Login", { replace: true });
       }
       setUserEmail(email!);
-      fetchReport(email!);
+      fetchReport();
     }
 
-    async function fetchReport(userEmail: string) {
+    async function fetchReport() {
       if (tickerSymbol) {
-        const html = await GetReport(tickerSymbol, userEmail);
+        const html = await GetReport(tickerSymbol);
         setReportHTML(html);
         setLoading(false);
       }
@@ -67,41 +68,102 @@ export default function StockReport() {
       .save();
   }
 
-  function saveReport() {
-    setSaving(true);
-    fetch(
-      "https://green-candle-h6rf-g42plqly9-jc4githubs-projects.vercel.app/data/addReport",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          mdString: reportHTML,
-          ticker: tickerSymbol.toUpperCase(),
-        }),
+  const searchReport = async (email: string, ticker: string) => {
+    try {
+      const response = await fetch(
+        `https://greencandleapi.azurewebsites.net/api/report/search?email=${email}&ticker=${ticker}`
+      );
+      if (!response.ok) {
+        return null;
       }
-    )
-      .then((response) => {
-        if (response.ok) {
-          setMessage("Report saved successfully!");
-          onOpen();
-        } else {
-          setMessage("Failed to save report.");
-          onOpen();
+      const data = await response.json();
+      return data;
+    } catch (error: any) {
+      console.error("Error searching for report:", error.message);
+    }
+  };
+
+  const saveReport = async () => {
+    setSaving(true);
+    // check if the report is already saved
+    const report = await searchReport(userEmail, tickerSymbol);
+    console.log(report);
+
+    if (report !== null) {
+      console.log("Report already exists, trying to update");
+      // update the old report with the new content
+      fetch(
+        `https://greencandleapi.azurewebsites.net/api/report/${report.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: report.id,
+            email: userEmail,
+            content: reportHTML,
+            ticker: tickerSymbol.toUpperCase(),
+          }),
         }
-      })
-      .catch((error) => {
-        console.error("Error saving report:", error);
-        onOpen();
-        setMessage(
-          "An error occurred while saving the report. Please try again later."
-        );
-      }).finally(() => {
-        setSaving(false);
-      });
-  }
+      )
+        .then((response) => {
+          if (response.ok) {
+            setMessage("Report updated successfully!");
+            onOpen();
+          } else {
+            setMessage("Failed to update report.");
+            onOpen();
+          }
+        })
+        .catch((error) => {
+          console.error("Error updating report:", error);
+          onOpen();
+          setMessage(
+            "An error occurred while updating the report. Please try again later."
+          );
+        }).finally(() => {
+          setSaving(false);
+        });
+
+    } else {
+      console.log("Report doesn't exist, trying to save");
+      // this report is new and needs to be saved
+      fetch(
+        "https://greencandleapi.azurewebsites.net/api/report",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: 0,
+            email: userEmail,
+            content: reportHTML,
+            ticker: tickerSymbol.toUpperCase(),
+          }),
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            setMessage("Report saved successfully!");
+            onOpen();
+          } else {
+            setMessage("Failed to save report.");
+            onOpen();
+          }
+        })
+        .catch((error) => {
+          console.error("Error saving report:", error);
+          onOpen();
+          setMessage(
+            "An error occurred while saving the report. Please try again later."
+          );
+        }).finally(() => {
+          setSaving(false);
+        });
+    }
+  };
 
   return (
     <div

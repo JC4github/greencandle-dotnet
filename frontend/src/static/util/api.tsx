@@ -2,7 +2,7 @@ import { CapDataItem, SearchReturn, TrendingItem } from "../../types/entities";
 import { transformData } from "./ts";
 
 const server = [
-  "https://green-candle-h6rf.vercel.app",
+  "https://greencandleapi.azurewebsites.net/api",
   "http://localhost:3000",
 ];
 
@@ -233,12 +233,16 @@ export const GetChartData = async (tickerSymbol: string, period: string) => {
   }
 };
 
-export const GetReport = async (tickerSymbol: string, _userEmail: string) => {
-  const url = `${server[0]}/generate/${tickerSymbol.toLocaleLowerCase()}`;
+export const GetReport = async (tickerSymbol: string) => {
+  const url = `${server[0]}/ai/${tickerSymbol}`;
   try {
     const response = await fetch(url, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     }).then((res) => {
+      console.log(res);
       return res.json();
     });
     console.log(response.content);

@@ -19,6 +19,12 @@ namespace greencandle_dotnet.Repository
             return _context.Reports.Where(r => r.Email == email).OrderBy(p => p.Id);
         }
 
+        // Method to get a report by email and ticker match
+        public Report GetReportByEmailAndTicker(string email, string ticker)
+        {
+            return _context.Reports.FirstOrDefault(r => r.Email == email && r.Ticker == ticker);
+        }
+
         // Method to delete a report for a user
         public void DeleteReportForUser(string id)
         {
