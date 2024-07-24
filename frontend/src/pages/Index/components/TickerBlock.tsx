@@ -81,7 +81,7 @@ export default function TickerBlock({
         />
 
         <Divider orientation="vertical" />
-        <Box>{companyName}</Box>
+        <Box >{companyName}</Box>
         <Stat marginLeft={"auto"}>
           <StatNumber>{price}</StatNumber>
           <StatHelpText

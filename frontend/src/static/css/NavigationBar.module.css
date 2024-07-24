@@ -12,3 +12,10 @@
         font-weight: 500;
     }
 }
+
+@media (max-width: 768px) {
+    .navBarContainer {
+      grid-template-columns: 1fr auto; /* Adjust the columns for mobile screens */
+      justify-content: space-between; /* Ensure items are equally spaced */
+    }
+  }

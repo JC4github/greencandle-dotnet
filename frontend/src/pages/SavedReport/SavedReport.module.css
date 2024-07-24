@@ -3,10 +3,12 @@
   flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
+  padding: 10px;
 }
 
 .flexContainer {
   display: flex;
+  flex-direction: row;
 }
 
 .leftPanel {
@@ -89,4 +91,19 @@
 .reportsTitle {
   color: green;
   font-size: 20px;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .flexContainer {
+    flex-direction: column;
+     /* Stack panels vertically on mobile screens */
+  }
+
+  .leftPanel,
+  .rightPanel {
+    width: 100%; /* Ensure panels take up the full width */
+    padding-right: 0; /* Remove padding to avoid extra space */
+    padding-left: 0; /* Remove padding to avoid extra space */
+  }
 }

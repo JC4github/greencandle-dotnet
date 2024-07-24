@@ -172,6 +172,7 @@ export default function StockReport() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        height: "100vh",
         gap: 10,
       }}
     >
@@ -181,7 +182,7 @@ export default function StockReport() {
         </div>
       ) : (
         <>
-          <HStack>
+          <HStack mt="20px">
             <Button leftIcon={<DownloadIcon />} onClick={() => clickHandle()}>
               Download PDF
             </Button>
@@ -191,7 +192,7 @@ export default function StockReport() {
           </HStack>
           <div
             style={{
-              width: "60%",
+              width: "90%",
               border: "black 1px solid",
               padding: 20,
               borderRadius: 5,

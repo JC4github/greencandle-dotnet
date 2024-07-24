@@ -48,73 +48,79 @@ export default function StockDetail() {
   }
 
   return (
-    <VStack spacing={4} align="stretch" style={{ flex: 1 }}>
-      <Box border="1px solid" borderColor="green" boxShadow="lg" p="2" borderRadius="15px">
-      <Tabs align="end" variant="soft-rounded" colorScheme="green" isFitted>
-        <TabList mb="1em">
-          <HStack justifyContent="space-between" width="full">
-            <Text fontSize="2xl" fontWeight="bold">
+    <VStack spacing={4} align="stretch" style={{ flex: 1, padding: 10 }}>
+      <Box border="1px solid" borderColor="green" boxShadow="lg" p="0" borderRadius="15px">
+        <Tabs variant="soft-rounded" colorScheme="green" isFitted>
+          <Box display={{ base: "block", md: "flex" }} flexDirection={{ base: "column", md: "row" }} mb="1em" pl={8} pt={8} pr={8}>
+            <Text fontSize="2xl" fontWeight="bold" mb={{ base: 2, md: 0 }} mr="10px" mt="5px">
               {tickerSymbol}
             </Text>
-            <HStack spacing={4}>
-              <Tab 
-                _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
-                border="1px solid" borderColor="gray.300"
-              >1D</Tab>
-              <Tab 
-                _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
-                border="1px solid" borderColor="gray.300"
-              >5D</Tab>
-              <Tab 
-                _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
-                border="1px solid" borderColor="gray.300"
-              >1M</Tab>
-              <Tab 
-                _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
-                border="1px solid" borderColor="gray.300"
-              >YTD</Tab>
-              <Tab 
-                _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
-                border="1px solid" borderColor="gray.300"
-              >1Y</Tab>
-            </HStack>
-          </HStack>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <Chart tickerSymbol={tickerSymbol} period="1D" />
-          </TabPanel>
-          <TabPanel>
-            <Chart tickerSymbol={tickerSymbol} period="5D" />
-          </TabPanel>
-          <TabPanel>
-            <Chart tickerSymbol={tickerSymbol} period="1M" />
-          </TabPanel>
-          <TabPanel>
-            <Chart tickerSymbol={tickerSymbol} period="YTD" />
-          </TabPanel>
-          <TabPanel>
-            <Chart tickerSymbol={tickerSymbol} period="1Y" />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Box>
-      <Box mt={8}> 
+            <TabList
+              display="flex"
+              flexDirection={{ base: "column", md: "row" }}
+              mt={{ base: 2, md: 0 }}
+              width={{ base: "100%", md: "auto" }}
+            >
+              <HStack spacing={4} width="full">
+                <Tab
+                  _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
+                  border="1px solid" borderColor="gray.300"
+                >1D</Tab>
+                <Tab
+                  _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
+                  border="1px solid" borderColor="gray.300"
+                >5D</Tab>
+                <Tab
+                  _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
+                  border="1px solid" borderColor="gray.300"
+                >1M</Tab>
+                <Tab
+                  _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
+                  border="1px solid" borderColor="gray.300"
+                >YTD</Tab>
+                <Tab
+                  _selected={{ color: "white", bg: "green.400", borderColor: "green.400" }}
+                  border="1px solid" borderColor="gray.300"
+                >1Y</Tab>
+              </HStack>
+            </TabList>
+          </Box>
+          <TabPanels>
+            <TabPanel>
+              <Chart tickerSymbol={tickerSymbol} period="1D" />
+            </TabPanel>
+            <TabPanel>
+              <Chart tickerSymbol={tickerSymbol} period="5D" />
+            </TabPanel>
+            <TabPanel>
+              <Chart tickerSymbol={tickerSymbol} period="1M" />
+            </TabPanel>
+            <TabPanel>
+              <Chart tickerSymbol={tickerSymbol} period="YTD" />
+            </TabPanel>
+            <TabPanel>
+              <Chart tickerSymbol={tickerSymbol} period="1Y" />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+      <Box mt={8}>
         <InformationDisplay tickerSymbol={tickerSymbol} />
       </Box>
       <Box mt={2} mb={6} style={{ textAlign: "center" }}>
-      <Button
-        color="white"
-        backgroundColor="green"
-        _hover={{ backgroundColor: 'rgba(116, 170, 156, 0.8)' }}
-        leftIcon={<RepeatIcon />}
-        rightIcon={<sup>by GPT</sup>}
-        onClick={clickHandle}
-        size="lg" // Larger size preset
-        padding="24px" // Custom padding
-        fontSize="24px" // Larger font size
-        height="auto" // Adjust height as needed based on content
-      >
+        <Button
+          color="white"
+          backgroundColor="green"
+          _hover={{ backgroundColor: 'rgba(116, 170, 156, 0.8)' }}
+          leftIcon={<RepeatIcon />}
+          rightIcon={<sup>by GPT</sup>}
+          onClick={clickHandle}
+          width={{ base: "80%", sm: "70%", md: "60%" }} // Responsive width
+        
+          padding="24px"
+          fontSize={{ base: "md", sm: "lg", md: "2xl" }} 
+          height="auto"
+        >
           Generate Due Diligence Report
         </Button>
       </Box>

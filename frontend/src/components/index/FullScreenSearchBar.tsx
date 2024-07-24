@@ -25,10 +25,10 @@ export default function FullScreenSearchBar({
   const [lastSearch, setLastSearch] = useState<string>("");
 
   return (
-    <Stack spacing={10} width="50%">
+    <Stack spacing={10} width="100%">
       {" "}
       // Ensure the Stack takes full width
-      <InputGroup size="lg" width="100%">
+      <InputGroup size="lg" width={{ base: "100%", md: "60%"}}>
         {" "}
         // Ensure InputGroup takes full width
         <InputRightElement

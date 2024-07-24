@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { VStack, HStack, Image, Text, Stat, StatLabel, StatNumber, StatHelpText, StatArrow, useColorModeValue } from '@chakra-ui/react';
+import { VStack, HStack, Image, Text, Stat, StatLabel, StatNumber, StatHelpText, StatArrow, useColorModeValue, useBreakpointValue } from '@chakra-ui/react';
 import { GetCompleteStockByTicker, TryCompanyByTicker } from '../../../static/util/api';
+
 
 interface Range {
     start: number | string;
@@ -64,16 +65,18 @@ export default function InformationDisplay({
         fetchData();
     }, [initialTickerSymbol]);
 
+    const showContent = useBreakpointValue({ base: false, md: true });
+
     return (
         <HStack bg={bg} borderRadius="lg" borderWidth={2} borderColor="green.300" p={4} spacing={6} align="center" justify="space-between">
-            <Image
+            {showContent && <Image
                 boxSize="120px"
                 src={`https://logos.stockanalysis.com/${tickerSymbol.toLowerCase()}.svg`}
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = `https://img.shields.io/badge/${tickerSymbol}-blue`;
                   }}
-            />
+            />}
             <VStack spacing={2} align="start">
                 <Text fontSize="3xl" fontWeight="bold" color={positiveColor}>{companyName} ({tickerSymbol})</Text>
                 <Text fontSize="md" color={positiveColor}>Market: {market} | Status: {marketStatus}</Text>
@@ -92,12 +95,12 @@ export default function InformationDisplay({
                     <StatNumber fontSize="xl" color={positiveColor}>{typeof volume === "number" ? volume.toLocaleString() : volume}</StatNumber>
                 </Stat>
             </VStack>
-            <VStack spacing={1} align="start">
+            {showContent && <VStack spacing={1} align="start">
                 <Text fontSize="md" color={positiveColor}>Open: ${typeof openingPrice === "number" ? openingPrice.toFixed(2) : openingPrice}</Text>
                 <Text fontSize="md" color={positiveColor}>Close: ${typeof closingPrice === "number" ? closingPrice.toFixed(2) : closingPrice}</Text>
                 <Text fontSize="md" color={positiveColor}>Day's Range: ${typeof daysRange.start === "number" ? daysRange.start.toFixed(2) : daysRange.start} - ${typeof daysRange.end === "number" ? daysRange.end.toFixed(2) : daysRange.end}</Text>
                 <Text fontSize="md" color={positiveColor}>52-Week Range: ${typeof week52Range.start === "number" ? week52Range.start.toFixed(2) : week52Range.start} - ${typeof week52Range.end === "number" ? week52Range.end.toFixed(2) : week52Range.end}</Text>
-            </VStack>
+            </VStack>}
         </HStack>
     );
 }
