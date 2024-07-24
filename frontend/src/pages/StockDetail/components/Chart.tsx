@@ -19,9 +19,14 @@ export default function Chart({
     }
 
     fetchData();
-  }, []);
+  }, [tickerSymbol, period]);
     return (
-        <div style={{ width: '100%', height: '300px' }}>
+        <div  style={{
+          width: '100%',
+          height: '300px',
+          minWidth: '300px',  // Ensures a minimum width
+          minHeight: '300px', // Ensures a minimum height
+        }}>
             <LineChart
       className="h-72"
       data={chartData}

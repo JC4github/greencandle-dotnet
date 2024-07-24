@@ -42,7 +42,6 @@ export default function UserStatusBar() {
 
   return (
     <div className={styles.container}>
-      <Avatar size="sm" name={user.email} />
       {!user.email ? (
         <Link to="/Login">
           <Button width={100} height={30}>

@@ -22,7 +22,7 @@ export default function AnimatedBanner() {
     <div className="banner-container">
       <Marquee>
         {trendingList.map((item) => (
-          <div className="ticker" key={item.companyName}>
+          <div className="ticker" key={item.companyTicker}>
             <span className="ticker-name">{item.companyName}</span>
             <span
               className={

@@ -7,6 +7,10 @@ import {
   CircularProgress,
   HStack,
   useDisclosure,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  Box,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { GetReport } from "../../static/util/api";
@@ -85,7 +89,6 @@ export default function StockReport() {
     setSaving(true);
     // check if the report is already saved
     const report = await searchReport(userEmail, tickerSymbol);
-    console.log(report);
 
     if (report !== null) {
       console.log("Report already exists, trying to update");
@@ -180,7 +183,22 @@ export default function StockReport() {
         </div>
       ) : (
         <>
-          <HStack mt="20px">
+          <Box
+            pt={{ base: "0px", md: "10px" }}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Alert status="warning" alignItems="center" borderRadius={5}>
+              <AlertIcon />
+              <Box>
+                <AlertDescription>
+                  The report can contain mistakes. Not to be taken as financial advice.
+                </AlertDescription>
+              </Box>
+            </Alert>
+          </Box>
+          <HStack>
             <Button leftIcon={<DownloadIcon />} onClick={() => clickHandle()}>
               Download PDF
             </Button>

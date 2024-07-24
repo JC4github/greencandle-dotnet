@@ -7,7 +7,6 @@ interface ReportDetailProps {
 
 const ReportDetail = ({ report }: ReportDetailProps) => {
   const createMarkup = (markdownString: string) => {
-    console.log(markdownString);
     return { __html: markdownString };
   };
 

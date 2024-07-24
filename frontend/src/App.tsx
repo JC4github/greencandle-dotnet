@@ -3,7 +3,7 @@ import NavigationBar from './components/NavigationBar'
 
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from '@chakra-ui/react'
-import { Outlet, useLocation} from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import firebase from 'firebase/compat/app';
 
@@ -31,15 +31,10 @@ export default function App() {
     firebase.initializeApp(firebaseConfig);
   }
 
-  const location = useLocation();
-  const isHomePage = (location.pathname === '/' || location.pathname === '/Login');
-
   return (
     <ChakraProvider>
       <NavigationBar />
-      <div className={isHomePage ? '' : 'detail'}>
         <Outlet />
-      </div>
     </ChakraProvider>
   )
 }

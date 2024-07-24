@@ -24,7 +24,6 @@ const SavedReport = () => {
           );
           if (response.ok) {
             const data = await response.json();
-            console.log(data);
             setReports(data);
             if (data.length > 0) {
               setSelectedReport(data[0]);

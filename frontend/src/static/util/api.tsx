@@ -171,7 +171,6 @@ export const GetTrendingList = async (count: number = 50) => {
  */
 export const GetMostCapList = async (count: number = 50) => {
   let url = `https://stockanalysis.com/api/screener/s/f?m=marketCap&s=desc&c=no,s,n,price,change&cn=${count}&i=stocks`;
-  // let url = `https://stockanalysis.com/api/screener/s/bd/n+change+marketCap+price.json`
   try {
     const response = await fetch(url, {
       method: "GET",
