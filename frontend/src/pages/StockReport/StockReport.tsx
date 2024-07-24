@@ -12,7 +12,6 @@ import dayjs from "dayjs";
 import { GetReport } from "../../static/util/api";
 import { DownloadIcon, AttachmentIcon } from "@chakra-ui/icons";
 import InfoDialog from "./components/InfoDialog";
-import { Report } from "../../types/entities";
 
 interface stockReportData {
   tickerSymbol: string;
@@ -28,7 +27,6 @@ export default function StockReport() {
   const navigate = useNavigate();
   const { tickerSymbol } = useLoaderData() as stockReportData;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [searchReturnedReport, setSearchReturnedReport] = useState<Report | null>(null);
   const [userEmail, setUserEmail] = useState<string>("");
   const [reportHTML, setReportHTML] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
