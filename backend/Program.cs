@@ -23,9 +23,6 @@ builder.Services.AddCors(options =>
 
 if (builder.Environment.IsDevelopment())
 {
-    // builder.Services.AddDbContext<ReportContext>(options => 
-    //     options.UseInMemoryDatabase("Report"));
-
     builder.Services.AddDbContext<ReportContext>(options => 
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found")));
 } 

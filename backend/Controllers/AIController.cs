@@ -24,6 +24,7 @@ namespace greencandle_dotnet.Controllers
             _httpClient = new HttpClient();
         }
 
+        //GET method for generating a report for a stock ticker
         [HttpGet("{ticker}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
@@ -60,6 +61,7 @@ namespace greencandle_dotnet.Controllers
             }
         }
 
+        // Fetch background data and financial metrics from an external API
         private async Task<string> FetchDataFromApi(string ticker)
         {
             string url = string.Format(ApiUrlTemplate, ticker);
@@ -73,6 +75,7 @@ namespace greencandle_dotnet.Controllers
             throw new HttpRequestException($"Error fetching data from external API: {response.StatusCode}");
         }
 
+        // Extract relevant data from the JSON response from the external API
         private string[] ExtractDataFromJson(string jsonData)
         {
             using var doc = JsonDocument.Parse(jsonData);
@@ -109,6 +112,7 @@ namespace greencandle_dotnet.Controllers
             return null;
         }
 
+        // Generate the report using the extracted data as input to the prompt
         private async Task<string> GenerateReport(string ticker, string[] extractedValues)
         {
             var (marketCap, revenue, netIncome, sharesOut, eps, peRatio, dividend, description) = (
