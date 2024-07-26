@@ -241,10 +241,8 @@ export const GetReport = async (tickerSymbol: string) => {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      console.log(res);
       return res.json();
     });
-    console.log(response.content);
     return response.content;
   } catch (e) {
     console.error(`GetReport() ${e}`);
