@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import styles from "../static/css/UserStatusBar.module.css";
-import { Avatar, Box, Button } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { onAuthStateChanged } from "firebase/auth";
 
 import {
