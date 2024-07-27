@@ -57,6 +57,7 @@ export default function UserStatusBar() {
             transition="all 0.2s"
             as={Button}
             rightIcon={<ChevronDownIcon />}
+            name="menu-button"
           >
             <Box ref={buttonRef} fontSize="15">
               {user.email}
@@ -64,11 +65,11 @@ export default function UserStatusBar() {
           </MenuButton>
           <MenuList zIndex={100}>
             <Link to={"SavedReport"}>
-              <MenuItem>Saved Reports</MenuItem>
+              <MenuItem name="saved-report-button">Saved Reports</MenuItem>
             </Link>
             <MenuDivider />
             <Link to={"/"} replace>
-              <MenuItem onClick={() => firebase.auth().signOut()}>
+              <MenuItem onClick={() => firebase.auth().signOut()} name="logout-button">
                 Logout
               </MenuItem>
             </Link>

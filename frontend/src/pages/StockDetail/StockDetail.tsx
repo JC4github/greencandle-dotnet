@@ -116,7 +116,7 @@ export default function StockDetail() {
           rightIcon={<sup>by GPT</sup>}
           onClick={clickHandle}
           width={{ base: "80%", sm: "70%", md: "60%" }} // Responsive width
-        
+          name="generate-report-button"
           padding="24px"
           fontSize={{ base: "md", sm: "lg", md: "2xl" }} 
           height="auto"

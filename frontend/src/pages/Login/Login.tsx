@@ -111,7 +111,7 @@ const CustomLogin: React.FC = () => {
           </div>
         </div>
         {error && <p className="error">{error}</p>}
-        <button onClick={handleLogin} className="button">
+        <button onClick={handleLogin} className="button" type="submit">
           {isSigningUp ? "Sign Up" : "Sign In"}
         </button>
       </div>

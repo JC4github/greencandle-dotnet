@@ -199,10 +199,10 @@ export default function StockReport() {
             </Alert>
           </Box>
           <HStack>
-            <Button leftIcon={<DownloadIcon />} onClick={() => clickHandle()}>
+            <Button leftIcon={<DownloadIcon />} onClick={() => clickHandle()} name="download-report-button">
               Download PDF
             </Button>
-            <Button leftIcon={<AttachmentIcon />} onClick={() => saveReport()}>
+            <Button leftIcon={<AttachmentIcon />} onClick={() => saveReport()} name="save-report-button">
               Save Report
             </Button>
           </HStack>

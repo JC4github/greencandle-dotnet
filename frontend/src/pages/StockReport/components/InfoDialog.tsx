@@ -33,7 +33,7 @@ export default function InfoDialog({ message, isOpen, onClose }: DialogProps) {
           <AlertDialogCloseButton />
           <AlertDialogBody>{message}</AlertDialogBody>
           <AlertDialogFooter>
-            <Button onClick={onClose}>OK</Button>
+            <Button onClick={onClose} name="ok-button">OK</Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
