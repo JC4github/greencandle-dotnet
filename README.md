@@ -48,3 +48,117 @@ These enhancements enabled the language model to reliably generate comprehensive
 - GPT-3.5 for report generation
 - Backend API deployed on Azure Web App Service
 - Frontend deployed on Vercel (too large for free deployment on Azure Static Web Apps)
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following software installed:
+
+- npm (v6.x or later)
+- .NET SDK (v8.0)
+- SQL Server or any SQL-compatible database
+
+### Installation
+
+#### Clone the Repository
+
+```bash
+git clone https://github.com/JC4github/greencandle-dotnet.git
+cd greencandle-dotnet
+```
+
+#### Frontend
+
+1. Navigate to the frontend directory:
+    ```bash
+    cd frontend
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+#### Backend
+
+1. Navigate to the backend directory:
+    ```bash
+    cd backend
+    ```
+2. Install dependencies:
+    ```bash
+    dotnet restore
+    ```
+
+### Configuration
+
+#### Frontend
+Contact me via email `rye419@aucklanduni.ac.nz` if you need a copy of the .env file.
+
+1. Create a `.env` file in the `frontend` directory and add the necessary environment variables from Firebase:
+    ```env
+    VITE_APIKEY=
+    VITE_AUTHDOMAIN=
+    VITE_PROJECTID=
+    VITE_STORAGEBUCKET=
+    VITE_MESSAGING_SENDERID=
+    VITE_APPID=
+    VITE_MEASUREMENTID=
+    ```
+
+#### Backend
+
+1. Create a `appsettings.json` file in the `backend` directory with the necessary configuration to connect to your SQL database:
+    ```json
+    {
+      "ConnectionStrings": {
+        "DefaultConnection": "Server=your_server;Database=your_database;User Id=your_username;Password=your_password;"
+      }
+    }
+    ```
+
+2. Create a `.env` file in the `backend` directory and add the necessary environment variables from OpenAI:
+    ```env
+    GPT_KEY=
+    ```
+
+### Running the Application
+
+#### Frontend
+
+1. Start the frontend development server:
+    ```bash
+    npm start
+    ```
+
+2. Open your browser and navigate to `http://localhost:5173`.
+
+#### Backend
+
+1. Update the database:
+    ```bash
+    dotnet ef database update
+    ```
+
+2. Start the backend server:
+    ```bash
+    dotnet run
+    ```
+
+3. The backend API will be running at `http://localhost:5174`.
+
+### Testing
+
+#### Unit Tests
+
+1. Navigate to the backend directory and run unit tests:
+    ```bash
+    dotnet test
+    ```
+
+#### End-to-End Tests
+
+1. Navigate to the frontend directory and run Cypress tests:
+    ```bash
+    npm run cy:open
+    ```
