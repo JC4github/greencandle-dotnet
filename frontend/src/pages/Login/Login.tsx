@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import "./Login.css";
 import googleLogo from "../../assets/google.png";
-import faceLogo from "../../assets/facebook.png";
 
 const CustomLogin: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -53,15 +52,6 @@ const CustomLogin: React.FC = () => {
     }
   };
 
-  const handleFacebookLogin = async () => {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    try {
-      await firebase.auth().signInWithPopup(provider);
-    } catch (error: any) {
-      setError(error.message);
-    }
-  };
-
   const toggleSignUp = () => {
     setIsSigningUp(!isSigningUp); // Toggle the sign up state
     setEmail(""); // Clear the email input field
@@ -78,10 +68,6 @@ const CustomLogin: React.FC = () => {
           <button className="google-btn" onClick={handleGoogleLogin}>
             <img src={googleLogo} alt="Google" className="google-logo" />
             <span className="google-btn-text">Google</span>
-          </button>
-          <button className="google-btn" onClick={handleFacebookLogin}>
-            <img src={faceLogo} alt="Facebook" className="google-logo" />
-            <span className="google-btn-text">Facebook</span>
           </button>
         </div>
         <div className="input-container">
